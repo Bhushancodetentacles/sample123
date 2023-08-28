@@ -1,19 +1,17 @@
-name: Debug Workflow
+name: CI/CD
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
 
 jobs:
-  debug:
+  deploy:
+    name: Deploy
     runs-on: ubuntu-latest
-
     steps:
-      - name: Debug Networking
+      - uses: actions/checkout@v2
+        with:
+          ref: 'main'
+      - name: Check Port 80 on google.com
         run: |
-          ping -c 5 google.com
-          traceroute google.com
-          nslookup google.com
-          curl -I https://www.google.com
-          wget https://www.google.com
+          nc -zv google.com 80
