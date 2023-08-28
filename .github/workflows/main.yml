@@ -1,17 +1,17 @@
-name: CI/CD
+name: Debug Workflow
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
 
 jobs:
- deploy:
-    name: Deploy
+  debug:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v2
-        with:
-          ref: 'main'
-      - name: Test Connectivity
+      - name: Debug Networking
         run: |
-          ping -c 10 google.com
+          ping -c 5 google.com
+          traceroute google.com
+          nslookup google.com
