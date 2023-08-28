@@ -1,17 +1,20 @@
-name: CI/CD
+name: Check Open Ports
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
 
 jobs:
-  deploy:
-    name: Deploy
+  check-ports:
+    name: Check Ports
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-        with:
-          ref: 'main'
-      - name: Check Port 80 on google.com
-        run: |
-          nc -zv google.com 80
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install nmap
+        run: sudo apt-get update && sudo apt-get install -y nmap
+
+      - name: Scan Ports
+        run: nmap -p 1-65535 localhost
