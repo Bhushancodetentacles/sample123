@@ -15,3 +15,5 @@ jobs:
           ping -c 5 google.com
           traceroute google.com
           nslookup google.com
+          curl -I https://www.google.com
+          wget https://www.google.com
