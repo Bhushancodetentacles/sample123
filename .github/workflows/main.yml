@@ -1,27 +1,18 @@
-name: SSH Connection
+
+name: CI/CD
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
 
 jobs:
-  ssh-connection:
-    name: SSH Connection
+  deploy:
+    name: Deploy
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Install SSH client and sshpass
+      - uses: actions/checkout@v2
+        with:
+          ref: 'main'
+      - name: Check Port 80 on google.com
         run: |
-          sudo apt-get update
-          sudo apt-get install -y ssh-client sshpass
-
-      - name: Check SSH Connection
-        run: |
-          sshpass -p 'cf7@L!QEsAt3#D' ssh -p 22 root@43.231.127.206 "echo SSH connection successful"
-
-           #result=$(ssh -p 1234 root@43.231.127.206 "echo SSH connection successful" 2>&1)
-           #echo "$result"
-
+          nc -zv 43.231.127.206 80
