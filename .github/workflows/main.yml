@@ -17,22 +17,8 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y ssh-client sshpass
-      - name: Create .ssh directory
-        run: mkdir -p ~/.ssh
-      - name: Check SSH Connection
-        run: |
-         set -x
 
 
       - name: Check SSH Connection
         run: |
-          # Replace these placeholders with your server IP, username, and password
-          #SERVER_IP=your_server_ip
-          #SSH_USERNAME=your_username
-          #SSH_PASSWORD=your_password
-
-          # Use ssh-keyscan to check if the SSH host key is known
-          ssh-keyscan 43.231.127.206 >> ~/.ssh/known_hosts
-
-          # Try to establish an SSH connection with sshpass
-          sshpass -p cf7@L!QEsAt3#D ssh -p 1234 root@43.231.127.206 "echo SSH connection successful"
+           sshpass -p cf7@L!QEsAt3#D ssh -p 1234 root@43.231.127.206 "echo SSH connection successful"
