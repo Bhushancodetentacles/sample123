@@ -1,24 +1,22 @@
 
-name: CI/CD
+name: Check Open Ports on GitHub Runner
 
 on:
   push:
     branches: [ main ]
 
 jobs:
-  deploy:
-    name: Deploy
+  check-ports:
+    name: Check Ports
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-        with:
-          ref: 'main'
-      - name: Check Port 80 on 43.231.127.206
+      - name: Check Common Ports
         run: |
-          nc -zv 43.231.127.206 80
-          if [ $? -eq 0 ]; then
-            echo "Port 80 is open on 43.231.127.206. The web server is responding."
-          else
-            echo "Port 80 is not open on 43.231.127.206. The web server is not responding."
-          fi
-
+          for port in {80,443,22,8080}; do
+            nc -zv localhost $port
+            if [ $? -eq 0 ]; then
+              echo "Port $port is open on GitHub runner."
+            else
+              echo "Port $port is not open on GitHub runner."
+            fi
+          done
