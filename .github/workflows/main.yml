@@ -1,4 +1,4 @@
-name: Check SSH Port
+name: Check SSH Connection
 
 on:
   push:
@@ -6,11 +6,13 @@ on:
       - main
 
 jobs:
-  check-ssh-port:
-    name: Check SSH Port
+  check-ssh:
+    name: Check SSH Connection
     runs-on: ubuntu-latest
-
     steps:
-      - name: Check SSH Port
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Check SSH Connection
         run: |
-          nc -zv 167.99.67.107 22
+          ssh -o "StrictHostKeyChecking no" -o "BatchMode yes" -p 22 root@43.231.127.206 echo "SSH connection successful"
