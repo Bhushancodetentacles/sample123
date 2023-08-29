@@ -13,6 +13,12 @@ jobs:
       - uses: actions/checkout@v2
         with:
           ref: 'main'
-      - name: Check Port 80 on google.com
+      - name: Check Port 80 on 43.231.127.206
         run: |
           nc -zv 43.231.127.206 80
+          if [ $? -eq 0 ]; then
+            echo "Port 80 is open on 43.231.127.206. The web server is responding."
+          else
+            echo "Port 80 is not open on 43.231.127.206. The web server is not responding."
+          fi
+
