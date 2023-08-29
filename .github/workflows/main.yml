@@ -1,5 +1,4 @@
-
-name: Check Open Ports
+name: Check SSH Port
 
 on:
   push:
@@ -7,15 +6,11 @@ on:
       - main
 
 jobs:
-  check-ports:
-    name: Check Ports
+  check-ssh-port:
+    name: Check SSH Port
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Install nmap
-        run: sudo apt-get update && sudo apt-get install -y nmap
-
-      - name: Scan Ports
-        run: nmap -p 1-65535 localhost
+      - name: Check SSH Port
+        run: |
+          nc -zv 43.231.127.206 22
