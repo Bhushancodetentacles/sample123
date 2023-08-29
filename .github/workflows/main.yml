@@ -13,4 +13,4 @@ jobs:
     steps:
       - name: Check SSH Port
         run: |
-          nc -zv 43.231.127.206 22
+          nc -zv 167.99.67.107 22
