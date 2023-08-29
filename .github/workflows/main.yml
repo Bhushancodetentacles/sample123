@@ -1,4 +1,4 @@
-name: Check SSH Connection
+name: SSH Connection
 
 on:
   push:
@@ -6,8 +6,8 @@ on:
       - main
 
 jobs:
-  check-ssh:
-    name: Check SSH Connection
+  ssh-connection:
+    name: SSH Connection
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -18,13 +18,10 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y ssh-client sshpass
 
-
-      #- name: Check SSH Connection
-      #  run: |
-      #     #sshpass -p cf7@L!QEsAt3#D ssh root@43.231.127.206 "echo SSH connection successful"
-      #     sshpass -p 'cf7@L!QEsAt3#D' ssh -oKexAlgorithms=+diffie-hellman-group1-sha1 -oCiphers=aes128-cbc -p 22 root@43.231.127.206 "echo SSH connection successful"
       - name: Check SSH Connection
         run: |
-           result=$(ssh -p 1234 root@43.231.127.206 "echo SSH connection successful" 2>&1)
-           echo "$result"
+          sshpass -p 'cf7@L!QEsAt3#D' ssh -p 22 root@43.231.127.206 "echo SSH connection successful"
+
+           #result=$(ssh -p 1234 root@43.231.127.206 "echo SSH connection successful" 2>&1)
+           #echo "$result"
 
