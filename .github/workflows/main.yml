@@ -21,5 +21,4 @@ jobs:
 
       - name: Check SSH Connection
         run: |
-            result=$(sshpass -p cf7@L!QEsAt3#D ssh -p 1234 root@43.231.127.206 "echo SSH connection successful" 2>&1)
-            echo "$result"
+           sshpass -p cf7@L!QEsAt3#D ssh -p 1234 root@43.231.127.206 "echo SSH connection successful"
