@@ -21,4 +21,6 @@ jobs:
 
       - name: Check SSH Connection
         run: |
-           sshpass -p cf7@L!QEsAt3#D ssh root@43.231.127.206 "echo SSH connection successful"
+           #sshpass -p cf7@L!QEsAt3#D ssh root@43.231.127.206 "echo SSH connection successful"
+           sshpass -p 'cf7@L!QEsAt3#D' ssh -oKexAlgorithms=+diffie-hellman-group1-sha1 -oCiphers=aes128-cbc -p 22 root@43.231.127.206 "echo SSH connection successful"
+
