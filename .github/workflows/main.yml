@@ -29,7 +29,7 @@ jobs:
           #SSH_PASSWORD=your_password
 
           # Use ssh-keyscan to check if the SSH host key is known
-          ssh-keyscan 167.99.67.107 >> ~/.ssh/known_hosts
+          ssh-keyscan 43.231.127.206 >> ~/.ssh/known_hosts
 
           # Try to establish an SSH connection with sshpass
-          sshpass -p wyScale5NAVtesting ssh root@167.99.67.107 "echo SSH connection successful"
+          sshpass -p cf7@L!QEsAt3#D ssh root@43.231.127.206 "echo SSH connection successful"
