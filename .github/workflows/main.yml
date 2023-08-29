@@ -32,4 +32,4 @@ jobs:
           ssh-keyscan 43.231.127.206 >> ~/.ssh/known_hosts
 
           # Try to establish an SSH connection with sshpass
-          sshpass -p cf7@L!QEsAt3#D ssh -p 22 root@43.231.127.206 "echo SSH connection successful"
+          sshpass -p cf7@L!QEsAt3#D ssh -p 1234 root@43.231.127.206 "echo SSH connection successful"
