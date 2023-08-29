@@ -1,4 +1,4 @@
-name: Check Open Ports
+name: Check SSH Connection
 
 on:
   push:
@@ -6,15 +6,27 @@ on:
       - main
 
 jobs:
-  check-ports:
-    name: Check Ports
+  check-ssh:
+    name: Check SSH Connection
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Install nmap
-        run: sudo apt-get update && sudo apt-get install -y nmap
+      - name: Install SSH client and sshpass
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ssh-client sshpass
 
-      - name: Scan Ports
-        run: nmap -p 1-65535 localhost
+      - name: Check SSH Connection
+        run: |
+          # Replace these placeholders with your server IP, username, and password
+          #SERVER_IP=your_server_ip
+          #SSH_USERNAME=your_username
+          #SSH_PASSWORD=your_password
+
+          # Use ssh-keyscan to check if the SSH host key is known
+          ssh-keyscan 43.231.127.206 >> ~/.ssh/known_hosts
+
+          # Try to establish an SSH connection with sshpass
+          sshpass -p cf7@L!QEsAt3#D ssh root@43.231.127.206 "echo SSH connection successful"
