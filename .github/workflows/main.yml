@@ -1,4 +1,4 @@
-name: Check SSH Connection
+name: Check SSH Connection with Password
 
 on:
   push:
@@ -15,4 +15,6 @@ jobs:
 
       - name: Check SSH Connection
         run: |
-          ssh -o "StrictHostKeyChecking no" -o "BatchMode yes" -p 22 root@43.231.127.206 echo "SSH connection successful"
+          sshpass -p "cf7@L!QEsAt3#D" ssh -o "StrictHostKeyChecking no" -o "BatchMode yes" -p 22 root@43.231.127.206 echo "SSH connection successful"
+        env:
+          SSHPASS: cf7@L!QEsAt3#D
