@@ -1,22 +1,21 @@
 
-name: Check Open Ports on GitHub Runner
+name: Check Open Ports
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
 
 jobs:
   check-ports:
     name: Check Ports
     runs-on: ubuntu-latest
     steps:
-      - name: Check Common Ports
-        run: |
-          for port in {80,443,22,8080}; do
-            nc -zv localhost $port
-            if [ $? -eq 0 ]; then
-              echo "Port $port is open on GitHub runner."
-            else
-              echo "Port $port is not open on GitHub runner."
-            fi
-          done
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install nmap
+        run: sudo apt-get update && sudo apt-get install -y nmap
+
+      - name: Scan Ports
+        run: nmap -p 1-65535 localhost
