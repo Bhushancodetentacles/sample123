@@ -1,4 +1,4 @@
-name: Check SSH Connection with Password
+name: Check SSH Port
 
 on:
   push:
@@ -6,15 +6,11 @@ on:
       - main
 
 jobs:
-  check-ssh:
-    name: Check SSH Connection
+  check-ssh-port:
+    name: Check SSH Port
     runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
 
-      - name: Check SSH Connection
+    steps:
+      - name: Check SSH Port
         run: |
-          sshpass -p  ssh -p 22 @43.231.127.206 echo "SSH connection successful"
-        env:
-          SSHPASS: 11
+          nc -zv 24.199.117.95 22
