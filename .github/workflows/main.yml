@@ -9,17 +9,14 @@ jobs:
 
   deploy-main-server:
     if: github.ref == 'refs/heads/main'
-    runs-on: ubuntu-latest
+    runs-on: sample123-runner
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-        
-      - name: Deploy to main server
-        uses: cross-the-world/ssh-scp-ssh-pipelines@v1.1.4
-        with:
-          pass: ${{ secrets.PASSWORD }}
-          user: ${{ secrets.USERNAME }}
-          host: ${{ secrets.HOSTNAME }}
-          scp: |
-            'test' => /var/www/html
+
+      - name: copy file
+        run: |
+          ls
+          pwd
+          
