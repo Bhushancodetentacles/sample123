@@ -1,4 +1,4 @@
-name: Check SSH Port
+name: Deploy test file on server 
 
 on:
   push:
@@ -6,11 +6,20 @@ on:
       - main
 
 jobs:
-  check-ssh-port:
-    name: Check SSH Port
+
+  deploy-main-server:
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check SSH Port
-        run: |
-          nc -zv 24.199.117.95 22
+      - name: Checkout code
+        uses: actions/checkout@v2
+        
+      - name: Deploy to main server
+        uses: cross-the-world/ssh-scp-ssh-pipelines@v1.1.4
+        with:
+          pass: ${{ secrets.PASSWORD }}
+          user: ${{ secrets.USERNAME }}
+          host: ${{ secrets.HOSTNAME }}
+          scp: |
+            'test' => /var/www/html
